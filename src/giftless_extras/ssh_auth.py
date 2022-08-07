@@ -17,7 +17,7 @@ def run():
     expires_in = 3600
     exp = int(time.time()) + expires_in
     payload = {"exp": exp, "scopes": args.scope}
-    token = jwt.encode(payload, args.key, "RS256")
+    token = jwt.encode(payload, args.key, "RS256").decode("ascii")
 
     auth = {
         "href": urljoin(args.endpoint, args.path.lstrip("/")),
