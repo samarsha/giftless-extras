@@ -91,7 +91,11 @@ class AmazonS3Storage(ExternalStorage):
             "get_object", Params=params, ExpiresIn=expires_in
         )
 
-        return {"actions": {"download": {"href": url, "expires_in": expires_in}}}
+        return {
+            "actions": {
+                "download": {"href": url, "header": {}, "expires_in": expires_in}
+            }
+        }
 
     def exists(self, prefix: str, oid: str) -> bool:
         try:
