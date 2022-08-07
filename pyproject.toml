@@ -1,0 +1,11 @@
+[project]
+name = "giftless_extras"
+version = "0.1"
+dependencies = [
+    "boto3",
+    "cryptography",
+    "giftless",
+]
+
+[project.scripts]
+giftless-ssh-authenticate = "giftless_extras.ssh_auth:run"
