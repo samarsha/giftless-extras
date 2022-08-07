@@ -10,12 +10,14 @@ def run():
     parser = argparse.ArgumentParser()
     parser.add_argument("--key", required=True)
     parser.add_argument("--endpoint", required=True)
-    parser.add_argument("path")
+    parser.add_argument("--scope", nargs="+", required=True)
+    parser.add_argument("--path", required=True)
     args = parser.parse_args()
 
     expires_in = 3600
     exp = int(time.time()) + expires_in
-    token = jwt.encode({"exp": exp}, args.key, "RS256")
+    payload = {"exp": exp, "scopes": args.scope}
+    token = jwt.encode(payload, args.key, "RS256")
 
     auth = {
         "href": urljoin(args.endpoint, args.path.lstrip("/")),
