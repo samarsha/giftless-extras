@@ -18,7 +18,7 @@ def run():
     token = jwt.encode({"exp": exp}, args.key, "RS256")
 
     auth = {
-        "href": urljoin(args.endpoint, args.path),
+        "href": urljoin(args.endpoint, args.path.lstrip("/")),
         "header": {"Authorization": f"Bearer {token}"},
         "expires_in": expires_in,
     }
