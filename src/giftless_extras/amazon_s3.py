@@ -1,11 +1,11 @@
 import base64
 import binascii
-import boto3
-import botocore
-from botocore.config import Config
-from giftless.storage import ExternalStorage
-from giftless.storage.exc import ObjectNotFound
-from giftless.util import safe_filename
+import boto3  # type: ignore
+from botocore.exceptions import ClientError  # type: ignore
+from botocore.config import Config  # type: ignore
+from giftless.storage import ExternalStorage  # type: ignore
+from giftless.storage.exc import ObjectNotFound  # type: ignore
+from giftless.util import safe_filename  # type: ignore
 import posixpath
 from typing import Any, Dict, Optional
 
@@ -108,7 +108,7 @@ class AmazonS3Storage(ExternalStorage):
         try:
             obj = self._s3.Object(self._bucket_name, self._blob_path(prefix, oid))
             return obj.content_length
-        except botocore.exceptions.ClientError as e:
+        except ClientError as e:
             raise ObjectNotFound() if e.response["Error"]["Code"] == "404" else e
 
     def _blob_path(self, prefix: str, oid: str) -> str:

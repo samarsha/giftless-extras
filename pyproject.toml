@@ -1,5 +1,5 @@
 [project]
-name = "giftless_extras"
+name = "giftless-extras"
 version = "0.1"
 dependencies = [
     "boto3",
