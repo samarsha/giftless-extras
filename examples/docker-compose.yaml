@@ -5,9 +5,9 @@ services:
     image: ghcr.io/samarsha/giftless-extras
     restart: always
     environment:
-      - GIFTLESS_CONFIG_FILE
       - AWS_ACCESS_KEY_ID
       - AWS_SECRET_ACCESS_KEY
+      - GIFTLESS_CONFIG_FILE=/app/config.yaml
     ports: [127.0.0.1:5000:5000]
     volumes:
       - /opt/git/giftless.yaml:/app/config.yaml
