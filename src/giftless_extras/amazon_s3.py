@@ -11,8 +11,6 @@ from typing import Any, Dict, Optional
 
 
 class AmazonS3Storage(ExternalStorage):
-    """AWS S3 storage backend."""
-
     def __init__(
         self,
         bucket_name: str,

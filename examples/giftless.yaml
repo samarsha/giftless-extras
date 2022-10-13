@@ -1,0 +1,14 @@
+AUTH_PROVIDERS:
+  - factory: giftless.auth.jwt:factory
+    options:
+      algorithm: RS256
+      public_key_file: /app/jwt-rs256.key.pub
+
+TRANSFER_ADAPTERS:
+  basic:
+    factory: giftless.transfer.basic_external:factory
+    options:
+      storage_class: giftless_extras.amazon_s3:AmazonS3Storage
+      storage_options:
+        bucket_name: my-lfs-bucket
+        storage_class: STANDARD_IA

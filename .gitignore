@@ -1,3 +1,6 @@
+__pycache__
 .mypy-cache
 *.egg-info
+/build
 /env
+/wheels
