@@ -10,13 +10,14 @@ from urllib.parse import urljoin
 from pathlib import Path
 
 KEY_FILE = "jwt-rs256.key"
-ENDPOINT = "https://my-lfs-endpoint/"
+ENDPOINT = "https://lfs.example.com/"
 SCOPES = ["obj:my-org/my-repo.git"]
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("path")
+    parser.add_argument("operation", choices=["download", "upload"])
     args = parser.parse_args()
     key = Path(KEY_FILE).read_text()
     token = authenticate(key, ENDPOINT, SCOPES, args.path)

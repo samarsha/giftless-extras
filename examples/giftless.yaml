@@ -8,7 +8,7 @@ TRANSFER_ADAPTERS:
   basic:
     factory: giftless.transfer.basic_external:factory
     options:
-      storage_class: giftless_extras.amazon_s3:AmazonS3Storage
+      storage_class: giftless_s3.amazon_s3:AmazonS3Storage
       storage_options:
         bucket_name: my-lfs-bucket
         storage_class: STANDARD_IA
