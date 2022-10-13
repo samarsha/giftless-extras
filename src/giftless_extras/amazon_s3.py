@@ -10,14 +10,14 @@ import posixpath
 from typing import Any, Dict, Optional
 
 
-class AmazonS3Storage(ExternalStorage):
+class AmazonS3Storage(ExternalStorage):  # type: ignore[misc]
     def __init__(
         self,
         bucket_name: str,
         path_prefix: Optional[str] = None,
         endpoint: Optional[str] = None,
         storage_class: Optional[str] = None,
-        **_,
+        **_: Dict[str, Any],
     ) -> None:
         config = Config(s3={"addressing_style": "virtual"})
         self._bucket_name = bucket_name
@@ -105,7 +105,9 @@ class AmazonS3Storage(ExternalStorage):
     def get_size(self, prefix: str, oid: str) -> int:
         try:
             obj = self._s3.Object(self._bucket_name, self._blob_path(prefix, oid))
-            return obj.content_length
+            size = obj.content_length
+            assert isinstance(size, int)
+            return size
         except ClientError as e:
             raise ObjectNotFound() if e.response["Error"]["Code"] == "404" else e
 
