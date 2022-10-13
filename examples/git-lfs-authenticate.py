@@ -20,13 +20,11 @@ def main() -> None:
     parser.add_argument("operation", choices=["download", "upload"])
     args = parser.parse_args()
     key = Path(KEY_FILE).read_text()
-    token = authenticate(key, ENDPOINT, SCOPES, args.path)
+    token = authorize(key, ENDPOINT, SCOPES, args.path)
     json.dump(token, sys.stdout)
 
 
-def authenticate(
-    key: str, endpoint: str, scopes: List[str], path: str
-) -> Dict[str, Any]:
+def authorize(key: str, endpoint: str, scopes: List[str], path: str) -> Dict[str, Any]:
     expires_in = 3600
     exp = int(time.time()) + expires_in
     payload = {"exp": exp, "scopes": scopes}
@@ -39,6 +37,7 @@ def authenticate(
 
 
 def to_ascii(s: Union[bytes, str]) -> str:
+    # Older versions of jwt return bytes, but newer versions return str.
     return s.decode("ascii") if isinstance(s, bytes) else s
 
 
