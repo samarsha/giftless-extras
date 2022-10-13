@@ -1,11 +1,11 @@
 import base64
 import binascii
-import boto3  # type: ignore
-from botocore.exceptions import ClientError  # type: ignore
-from botocore.config import Config  # type: ignore
-from giftless.storage import ExternalStorage  # type: ignore
-from giftless.storage.exc import ObjectNotFound  # type: ignore
-from giftless.util import safe_filename  # type: ignore
+import boto3
+from botocore.exceptions import ClientError
+from botocore.config import Config
+from giftless.storage import ExternalStorage
+from giftless.storage.exc import ObjectNotFound
+from giftless.util import safe_filename
 import posixpath
 from typing import Any, Dict, Optional
 
