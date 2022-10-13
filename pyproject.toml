@@ -6,6 +6,3 @@ dependencies = [
     "cryptography",
     "giftless",
 ]
-
-[project.scripts]
-giftless-ssh-authenticate = "giftless_extras.ssh_auth:run"
