@@ -2,7 +2,6 @@
 name = "giftless-s3"
 version = "0.1"
 dependencies = [
-    "boto3",
-    "cryptography",
-    "giftless",
+    "boto3 ~= 1.24.91",
+    "giftless ~= 0.5.0",
 ]
