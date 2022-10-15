@@ -4,7 +4,7 @@ COPY src src
 COPY pyproject.toml .
 RUN pip wheel --wheel-dir wheels --no-deps .
 
-FROM datopian/giftless
+FROM datopian/giftless:0.5.0
 
 USER root
 COPY --from=build wheels wheels
